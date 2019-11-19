@@ -75,6 +75,7 @@
 
 - name: disable the default service
   service: name={{ patroni_pg_default_service }} state=stopped enabled=no
+  when: "ansible_os_family == 'Debian'"
 
 - name: put a systemctl unit file
   template: src=patroni.service dest=/etc/systemd/system/patroni.service
